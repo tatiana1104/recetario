@@ -2,15 +2,14 @@
 
 A new Flutter project.
 
-## Getting Started
+## Commits
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+|tipo |uso |
+|--------|--------|
+|feat |nueva funcionalidad |
+|fix |correcion de bug |
+|docs |documentación |
+|style |formato, estilos, sin afectar logica |
+|refactor |cambios internos sin cambiar funcionalidad |
+|test |Test agregados/ modificados |
+|chore |configuración, tareas internas |
