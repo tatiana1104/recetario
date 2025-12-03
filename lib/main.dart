@@ -23,18 +23,50 @@ class RecipeBook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( //creamos una hoja en blanco
-      appBar: AppBar( //mostramos un titulo y definimos color
-        backgroundColor: Colors.orange, //definimos el color de fondo del AppBar
+    return Scaffold( //se crea una hoja en blanco
+      appBar: AppBar( //se muestra titulo y define color
+        backgroundColor: Colors.green[400], //define el color de fondo del AppBar
         title: const Text(
           'Libro de recetas',
-          style: TextStyle( //modificamos color, tamaño y estilo del texto
+          style: TextStyle( //modifica color, tamaño y estilo del texto
             color: Colors.white,
           ),
         ),
       ),
-      body: const Center( //mostramos el contenido
-        child: Text('Bienvenido al libro de recetas'),
+
+      //se muestra el contenido de la app
+      body: Container( 
+        width: MediaQuery.of(context).size.width, //define el ancho del contenedor
+        height: 125, //define la altura del contenedor
+        child: Card(
+          child: Row(
+            children: <Widget>[
+              Container(
+                height: 125,
+                width: 100,
+                child: ClipRRect( //permite que la imagen tenga bordes circulares
+                  borderRadius: BorderRadius.circular(10.0), //borde circular
+                  child: Container( //llama a la función que contiene la imagen
+
+                  ), 
+                ),
+              ),
+              SizedBox(width: 26), //espacio entre la imagen y el texto
+              Column(
+                children: <Widget>[
+                  Text('LASAÑA'),
+                  Text('Alison Jimenez'),
+                  Container(
+                    height: 1,
+                    width: 75,
+                    color: Colors.green,
+                  ),
+                  
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
