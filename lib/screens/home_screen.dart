@@ -11,6 +11,26 @@ class HomeScreen extends StatelessWidget {
         _RecipesCard(context),
         _RecipesCard(context),
       ],
+      ),
+      floatingActionButton: FloatingActionButton( //botón flotante
+        onPressed: () {
+            _showBottom(context);
+        }, //acción al presionar el botón
+        backgroundColor: Colors.green[400], //color de fondo del botón
+        child: const Icon(Icons.add, color: Colors.white), //icono del botón
+      ),
+    );
+  }
+
+  //función que muestra el modal inferior
+  Future<void> _showBottom(BuildContext context) {
+    return showModalBottomSheet( //muestra un modal desde la parte inferior
+      context: context, //contexto de la pantalla
+      builder: (contexto) => Container( //contenedor del modal
+        width: MediaQuery.of(context).size.width, //ancho del contenedor
+        height: 500, //altura del contenedor
+        color: Colors.white, //color de fondo del contenedor
+        child: RecipeForm(), //llama al formulario de receta
       )
     );
   }
@@ -31,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                 child: ClipRRect( //recorta la imagen en forma de rectángulo
                   borderRadius: BorderRadius.circular(12.0), //define el radio de los bordes del rectángulo
                   child: Image.asset( //carga la imagen desde los assets
-                    'assets/images/lasagna.jpg',
+                    'assets/images/lasagna.jpg', //ruta de la imagen
                     fit: BoxFit.cover, //ajusta la imagen para cubrir el contenedor
                   ),
                 ),
@@ -55,6 +75,54 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+//clase estatica para el formulario
+class RecipeForm extends StatelessWidget {
+  const RecipeForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.all(8), //define el espacio alrededor del formulario
+        child: Form(
+          //key: _formKey, //llave para validar el formulario
+          child: Column( 
+            crossAxisAlignment: CrossAxisAlignment.start, //alinea los elementos al inicio de la columna
+            children: [
+              Text(
+                'Add New Recipe',
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 24,
+                ),
+              ),
+              SizedBox(height: 16),
+              _buildTextField(label: 'Recipe Name') //llama a la función para crear el campo de texto
+            ],
+          ),
+        ));
+  }
+
+  //función que crea un campo de texto personalizado
+  Widget _buildTextField({required String label}) {
+    return TextFormField( //campo de texto para formularios
+      decoration: InputDecoration( //decora el campo de texto
+        labelText: label, //texto de la etiqueta
+        labelStyle: TextStyle( 
+          fontFamily: 'Quicksand',
+          color: Colors.green,
+        ),
+        border: OutlineInputBorder( //borde del campo de texto
+          borderRadius: BorderRadius.circular(10),
+        ),
+        focusedBorder: OutlineInputBorder( //borde cuando el campo está enfocado
+          borderSide: BorderSide(color: Colors.green, width: 1),
+          borderRadius: BorderRadius.circular(10)
+        )
       ),
     );
   }
