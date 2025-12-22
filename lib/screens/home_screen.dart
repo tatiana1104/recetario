@@ -1,11 +1,26 @@
+import 'dart:convert'; //importa la librería para decodificar JSON
+
 import 'package:flutter/material.dart';
-import 'package:recetario/screens/recipe_detail.dart';
+import 'package:recetario/screens/recipe_detail.dart'; //importa la pantalla de detalles de la receta
+
+import 'package:http/http.dart' as http; //importa la librería http para realizar peticiones
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key}); //constructor
 
+  Future<List<dynamic>> fetchRecipes() async {
+    // Android 10.0.2.2
+    // IOS 127.0.0.1
+    // WEB
+    final url = Uri.parse('http://localhost:3001/recipes'); //URL del servidor local
+    final response = await http.get(url); //realiza una petición GET al servidor
+    final data = jsonDecode(response.body); //decodifica la respuesta JSON
+    return data['recipes']; //retorna la lista de recetas
+  }
+
   @override
   Widget build(BuildContext context) {
+    fetchRecipes(); //llama a la función para obtener las recetas
     return Scaffold(
       //crea una hoja en blanco
       body: Column(
@@ -69,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                     ), //define el radio de los bordes del rectángulo
                     child: Image.asset(
                       //carga la imagen desde los assets
-                      'assets/images/lasagna.jpg', //ruta de la imagen
+                      'assets/images/lasana.jpg', //ruta de la imagen
                       fit: BoxFit
                           .cover, //ajusta la imagen para cubrir el contenedor
                     ),
