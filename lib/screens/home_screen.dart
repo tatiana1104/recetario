@@ -6,11 +6,11 @@ class HomeScreen extends StatelessWidget {
 @override
   Widget build(BuildContext context) {
     return Scaffold( //crea una hoja en blanco
-      body: column( //organiza los elementos en columna
-        children <Widget>[ //lista de widgets dentro de la columna
-          _RecipesCard(context), //llama a la función que contiene la tarjeta personalizada
-          _RecipesCard(context),
-        ],
+      body: Column(
+        children: <Widget>[
+        _RecipesCard(context),
+        _RecipesCard(context),
+      ],
       )
     );
   }
@@ -28,9 +28,12 @@ class HomeScreen extends StatelessWidget {
               Container( //contiene la imagen
                 height: 125, 
                 width: 100,
-                decoration: BoxDecoration( //decora el contenedor
-                  borderRadius: BorderRadius.circular(12.0), //define el radio de los bordes
-                  color: Colors.green, //define el color de fondo
+                child: ClipRRect( //recorta la imagen en forma de rectángulo
+                  borderRadius: BorderRadius.circular(12.0), //define el radio de los bordes del rectángulo
+                  child: Image.asset( //carga la imagen desde los assets
+                    'assets/images/lasagna.jpg',
+                    fit: BoxFit.cover, //ajusta la imagen para cubrir el contenedor
+                  ),
                 ),
               ),
               SizedBox(width: 26), //espacio entre la imagen y el texto
@@ -52,7 +55,7 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-      );
-    )
+      ),
+    );
   }
 }
